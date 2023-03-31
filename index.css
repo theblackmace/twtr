@@ -17,6 +17,10 @@ i{
     cursor: pointer;
 }
 
+.fa-solid {
+    color: #999;
+}
+
 .liked{
     color: red;
 }
@@ -52,6 +56,7 @@ textarea{
     width: 100%;
     font-size: 20px;
     line-height: 30px;
+    resize: none;
 }
 
 button{

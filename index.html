@@ -7,20 +7,24 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
 	<header>
-		<h1>Twimba</h1>
+		<h1>twtr 🐦</h1>
 	</header>
 	<main>
 		<div class="tweet-input-area">
-			<img src="images/scrimbalogo.png" class="profile-pic">
+			<img src="images/pfp.png" class="profile-pic">
 		</div>
+		<textarea id="tweet-input" placeholder="What's happening?"></textarea>
 		<button id="tweet-btn">Tweet</button>
-		<div class="feed" id="feed"></div>
+		<div class="feed" id="feed">
+			<!-- Tweets here!!! -->
+		</div>
 	</main>
-	<script src="index.js"></script>
+	<script src="index.js" type="module"></script>
 </body>
 
 </html>
