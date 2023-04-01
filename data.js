@@ -11,7 +11,7 @@ export const tweetsData = [
         isRetweeted: false,
         uuid: '4b161eee-c0f5-4545-9c4b-8562944223ee',
     },    
-    
+
     {
         handle: `@NoobCoder12`,
         profilePic: `images/flower.png`,

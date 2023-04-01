@@ -1,7 +1,11 @@
-import {tweetsData} from './data.js';
+import { tweetsData as data } from './data.js';
 import { v4 as uuidv4 } from 'https://jspm.dev/uuid';
 
+let tweetsData = data;
 
+if(localStorage.getItem('storedTweetsData')) {
+    tweetsData = JSON.parse(localStorage.getItem('storedTweetsData'));
+}
 
 document.addEventListener('click', function(e) {
         if(e.target.dataset.like) {
@@ -12,12 +16,13 @@ document.addEventListener('click', function(e) {
             handleReplyClick(e.target.dataset.reply)
         } else if(e.target.id === 'tweet-btn') {
             handleTweetBtnClick();
+        } else if(e.target.id === 'reply-button') {
+            handleReplyBtnClick(e.target.dataset.replyBtn);
         }
 });
 
 
 function handleLikeClick(tweetId) {
-
     const targetTweetObj = tweetsData.filter(function(tweet) {
         return tweet.uuid === tweetId;
     })[0];
@@ -44,9 +49,25 @@ function handleRetweetClick(tweetId){
 }
 
 function handleReplyClick(tweetId) {
-    console.log(tweetId);
     const replyEl = document.querySelector(`#replies-${tweetId}`);
+    const replyArea = document.querySelector(`#reply-${tweetId}`);
     replyEl.classList.toggle('hidden');
+    replyArea.classList.toggle('hidden');
+}
+
+function handleReplyBtnClick(tweetId) {
+    const reply = document.querySelector(`#reply-input-${tweetId}`).value;
+    if(reply){
+        const parentTweet = tweetsData.filter(function(tweet) {
+            return tweet.uuid === tweetId;
+        })[0]
+        parentTweet.replies.push({
+            handle: `@web3_pastel`,
+            profilePic: `images/pfp.png`,
+            tweetText: `${reply}`
+        })
+        render();
+    }
 }
 
 function handleTweetBtnClick() {
@@ -62,7 +83,7 @@ function handleTweetBtnClick() {
             replies: [],
             isLiked: false,
             isRetweeted: false,
-            uuid: uuidv4(),
+            uuid: uuidv4()
         });
         tweetInput.value = "";
         render();
@@ -127,7 +148,11 @@ function getFeedHtml() {
                 </div>
                 <div class="hidden" id="replies-${tweet.uuid}">
                     ${repliesHtml}
-                </div>   
+                </div>
+                <div class="reply-holder hidden" id="reply-${tweet.uuid}">
+                    <textarea class="reply-input" id="reply-input-${tweet.uuid}"></textarea>
+                    <button class="reply-button" id="reply-button" data-reply-btn= "${tweet.uuid}">Reply</button>
+                </div>
             </div>
         `
     });
@@ -136,6 +161,7 @@ function getFeedHtml() {
 
 function render() {
     document.querySelector('#feed').innerHTML = getFeedHtml();
+    localStorage.setItem('storedTweetsData',JSON.stringify(tweetsData));
 }
 
 render();

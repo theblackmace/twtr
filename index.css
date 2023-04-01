@@ -48,7 +48,7 @@ header{
 
 /* textareas + btn */
 
-textarea{
+main textarea{
     border: none;
     padding: 10px;
     margin: 0 0 20px 0;
@@ -59,7 +59,7 @@ textarea{
     resize: none;
 }
 
-button{
+#tweet-btn{
     background-color: #1DA1F2;
     border: none;
     color: white;
@@ -124,6 +124,41 @@ button{
     border: 1px solid lightgray;
     border-radius: 50%;
     width: 48px;
+}
+
+
+
+/* Reply Input */
+.reply-input {
+    border: none;
+    padding: 10px;
+    margin: 10px 0px 0px 40px;
+    height: 60px;
+    width: 60%;
+    font-size: 20px;
+    line-height: 30px;
+    resize: none;
+}
+
+.reply-holder {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.reply-button {
+    margin-left: 40px;
+    margin-top: 5px;
+    background-color: #1DA1F2;
+    border: none;
+    color: white;
+    padding: auto;
+    border-radius: 20px;
+    width: 25%;
+    height: 30px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
 }
 
 /* utility */
